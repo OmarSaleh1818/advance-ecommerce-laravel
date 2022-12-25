@@ -29,7 +29,7 @@
                     </h3>
 
                     <div class="card-body">
-                        <form action="{{ route('user.profile.store') }}" method="post">
+                        <form action="{{ route('user.profile.store') }}" method="post" enctype="multipart/form-data">
                             @csrf 
 
                             <div class="form-group">

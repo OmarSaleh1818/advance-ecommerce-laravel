@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Home\IndexController;
 
 /*
@@ -48,9 +49,15 @@ Route::prefix('admin')->group(function() {
 
 });
 
+// Admin Brand All Route 
+
+Route::prefix('brand')->group(function() {
+
+    Route::get('/view',[BrandController::class, 'BrandView'])->name('all.brand');
+    Route::post('/store',[BrandController::class, 'BrandStore'])->name('brand.store');
 
 
-
+});
 
 /* ------------- End Admin Route -------------*/
 
