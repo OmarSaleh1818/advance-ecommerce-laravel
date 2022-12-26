@@ -41,7 +41,7 @@ $route = Route::current()->getName();
           </a>
           <ul class="treeview-menu">
             <li class="{{ ($route == 'all.brand')? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+            <li><a href=""><i class="ti-more"></i>test</a></li>
           </ul>
         </li> 
 		  
