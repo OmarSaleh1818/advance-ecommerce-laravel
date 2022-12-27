@@ -47,7 +47,7 @@
 								<td><span><i class="{{$item->category_icon}}"></i></span></td>
 								<td>{{ $item->category_name_en}}</td>
 								<td>{{ $item->category_name_ar}}</td>
-								<td>
+								<td width="30%">
                                     <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info" title="edit data"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" title="delete data" id="delete"><i class="fa fa-trash"></i></a>
                                 </td>

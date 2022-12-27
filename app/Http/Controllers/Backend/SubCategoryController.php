@@ -44,7 +44,7 @@ class SubCategoryController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Your Category Inserted Successfully',
+            'message' => 'Your Sub Category Inserted Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -93,6 +93,8 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+    
 
 
 }
