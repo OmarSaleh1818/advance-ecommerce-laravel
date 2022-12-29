@@ -39,7 +39,7 @@
                     <form method="post" action="{{ route('subcategory.update') }}">
                         @csrf
 
-                        <input type="hidden" name="id" value="$subcategory->id" >
+                        <input type="hidden" name="id" value="{{ $subcategory->id }}" >
 
                         <div class="form-group">
                             <h5>Category Select <span class="text-danger">*</span></h5>

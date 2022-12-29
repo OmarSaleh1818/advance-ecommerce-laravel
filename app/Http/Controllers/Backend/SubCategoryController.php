@@ -68,9 +68,9 @@ class SubCategoryController extends Controller
             'subcategory_name_en' => $request->subcategory_name_en,
             'subcategory_name_ar' => $request->subcategory_name_ar,
             'subcategory_slug_en' => strtolower(str_replace(' ' , '-', $request->subcategory_name_en)),
-            'subcategory_slug_ar' => str_replace(' ' , '-', $request->subcategory_name_ar),
-            
+            'subcategory_slug_ar' => str_replace(' ' , '-', $request->subcategory_name_ar)
         ]);
+
 
         $notification = array(
             'message' => 'Your SubCategory Updated Successfully',
@@ -78,6 +78,7 @@ class SubCategoryController extends Controller
         );
 
         return redirect()->route('all.subcategory')->with($notification);
+
 
     }
 
