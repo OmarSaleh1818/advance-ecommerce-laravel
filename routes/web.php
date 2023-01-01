@@ -95,6 +95,7 @@ Route::prefix('category')->group(function() {
     Route::get('/sub/sub/delete/{id}',[SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 
     Route::get('/subcategory/ajax/{category_id}',[SubSubCategoryController::class, 'GetSubCategory']);
+    Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubSubCategoryController::class, 'GetSubSubCategory']);
 
 });
 
@@ -103,6 +104,7 @@ Route::prefix('category')->group(function() {
 Route::prefix('product')->group(function() {
 
     Route::get('/add',[ProductController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store',[ProductController::class, 'ProductStore'])->name('product.store');
 
 });
 

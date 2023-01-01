@@ -9,7 +9,9 @@ use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Product;
-
+use App\Models\MultiImage;
+use Carbon\Carbon;
+use Image;
 
 
 class ProductController extends Controller
@@ -23,5 +25,124 @@ class ProductController extends Controller
 
     }
     
+    public function ProductStore(Request $request) {
+
+        $request->validate([
+
+            'brand_id' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'subsubcategory_id' => 'required',
+            'product_name_en' => 'required',
+            'product_name_ar' => 'required',
+            'product_code' => 'required',
+            'product_qty' => 'required',
+            'selling_price' => 'required',
+            'product_tags_en' => 'required',
+            'product_tags_ar' => 'required',
+            'product_size_en' => 'required',
+            'product_size_ar' => 'required',
+            'product_color_en' => 'required',
+            'product_color_ar' => 'required',
+            'discount_price' => 'required',
+            'product_thambnail' => 'required',
+            'multi_image' => 'required',
+            'short_description_en' => 'required',
+            'short_description_ar' => 'required',
+            'long_description_en' => 'required',
+            'long_description_ar' => 'required',
+            
+        ],[
+            'brand_id.required' => 'Brand Name Is required',
+            'category_id.required' => 'Category Name Is required',
+            'subcategory_id.required' => 'Subcategory Name Is required',
+            'subsubcategory_id.required' => 'Subsubcategory Name Is required',
+            'product_name_en.required' => 'Product Name English Is required',
+            'product_name_ar.required' => 'Product Name Arabic Is required',
+            'product_code.required' => 'Product Code Name Is required',
+            'product_qty.required' => 'Product Quantity Name Is required',
+            'selling_price.required' => 'Selling Price Name Is required',
+            'product_tags_en.required' => 'Product Tags English Is required',
+            'product_tags_ar.required' => 'Product Tags Arabic Name Is required',
+            'product_size_en.required' => 'Product Size English Is required',
+            'product_size_ar.required' => 'Product Size Arabic Is required',
+            'product_color_en.required' => 'Product Color English Is required',
+            'product_color_ar.required' => 'Product Color Arabic Is required',
+            'discount_price.required' => 'Discount Price Is required',
+            'product_thambnail.required' => 'Main Image Is required',
+            'multi_image.required' => 'Multi Image Is required',
+            'short_description_en.required' => 'Short Description English Is required',
+            'short_description_ar.required' => 'Short Description Arabic Is required',
+            'long_description_en.required' => 'Long Description English Is required',
+            'long_description_ar.required' => 'Long Description Arabic Is required',
+        ]
+        );
+
+        $image = $request->file('product_thambnail');
+        $name_gen = hexdec(uniqid().'.'.$image->getClientOriginalExtension());
+        Image::make($image)->resize(917,1000)->save('upload/products/main/'.$name_gen);
+        $save_url = 'upload/products/main/'.$name_gen ;
+
+        $product_id = Product::insertGetId([
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_id' => $request->subsubcategory_id,
+            'product_name_en' => $request->product_name_en,
+            'product_name_ar' => $request->product_name_ar,
+            'product_slug_en' => strtolower(str_replace(' ' , '-', $request->product_name_en)),
+            'product_slug_ar' => str_replace(' ' , '-', $request->product_name_ar),
+            'product_code' => $request->product_code,
+            'product_qty' => $request->product_qty,
+            'selling_price' => $request->selling_price,
+            'product_tags_en' => $request->product_tags_en,
+            'product_tags_ar' => $request->product_tags_ar,
+            'product_size_en' => $request->product_size_en,
+            'product_size_ar' => $request->product_size_ar,
+            'product_color_en' => $request->product_color_en,
+            'product_color_ar' => $request->product_color_ar,
+            'discount_price' => $request->discount_price,
+            'product_thambnail' =>  $save_url,
+            'short_description_en' => $request->short_description_en,
+            'short_description_ar' => $request->short_description_ar,
+            'long_description_en' => $request->long_description_en,
+            'long_description_ar' => $request->long_description_ar,
+            'featured' => $request->featured,
+            'special_offers' => $request->special_offers,
+            'special_deals' => $request->special_deals,
+            'status' => 1,
+            'created_at' => Carbon::now(),
+        ]);
+
+        ////// Multi Image ///////
+
+        $images = $request->file('multi_image');
+        foreach ($images as $multi_image) {
+            $name_gen = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension();
+            Image::make($multi_image)->resize(917,1000)->save('upload/products/multi-image/'. $name_gen);
+
+            $uploadPath = 'upload/products/multi-image/' . $name_gen ;
+
+            MultiImage::insert([
+                'product_id' => $product_id,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now()
+            ]);
+
+        }
+
+        ///// End Multi Image /////
+
+
+        $notification = array(
+            'message' => 'Your Product Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }
+
+
 
 }
