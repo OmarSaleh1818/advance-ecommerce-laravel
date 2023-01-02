@@ -105,6 +105,15 @@ Route::prefix('product')->group(function() {
 
     Route::get('/add',[ProductController::class, 'AddProduct'])->name('add.product');
     Route::post('/store',[ProductController::class, 'ProductStore'])->name('product.store');
+    Route::get('/manage',[ProductController::class, 'ManageProduct'])->name('manage.product');
+    Route::get('/edit/{id}',[ProductController::class, 'ProductEdit'])->name('product.edit');
+    Route::post('/data/update',[ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::post('/image/update',[ProductController::class, 'MultiImageUpdate'])->name('update.product.image');
+    Route::post('/mainimage/update',[ProductController::class, 'MainImageUpdate'])->name('update.product.mainimage');
+    Route::get('/multiimage/delete/{id}',[ProductController::class, 'MultiImageDelete'])->name('multiimage.delete');
+    Route::get('/inactive/{id}',[ProductController::class, 'ProductInactive'])->name('product.inactive');
+    Route::get('/active/{id}',[ProductController::class, 'ProductActive'])->name('product.active');
+
 
 });
 
