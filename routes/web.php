@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Home\IndexController;
 
 /*
@@ -117,6 +118,24 @@ Route::prefix('product')->group(function() {
 
 
 });
+
+// End Admin Product All Route
+
+// Admin Slider All Route
+
+Route::prefix('slider')->group(function() {
+
+    Route::get('/manage',[SliderController::class, 'ManageSlider'])->name('manage.slider');
+    Route::post('/store',[SliderController::class, 'SliderStore'])->name('slider.store');
+    Route::get('/edit/{id}',[SliderController::class, 'SliderEdit'])->name('slider.edit');
+    Route::post('/update',[SliderController::class, 'SliderUpdate'])->name('slider.update');
+    Route::get('/delete/{id}',[SliderController::class, 'SliderDelete'])->name('slider.delete');
+    Route::get('/inactive/{id}',[SliderController::class, 'SliderInactive'])->name('slider.inactive');
+    Route::get('/active/{id}',[SliderController::class, 'SliderActive'])->name('slider.active');
+
+});
+
+// End Admin Slider All Route
 
 
 

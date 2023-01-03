@@ -71,7 +71,21 @@ $route = Route::current()->getName();
             <li class="{{ ($route == 'add.product')? 'active' : '' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Products</a></li>
             <li class="{{ ($route == 'manage.product')? 'active' : '' }}"><a href="{{ route('manage.product') }}"><i class="ti-more"></i>Manage Products</a></li>
           </ul>
-        </li> 		  
+        </li> 
+        
+        <li class="treeview {{ ($prefix == '/slider')? 'active':'' }} ">
+          <a href="#">
+            <i class="fa fa-sliders" aria-hidden="true"></i>
+            <span>Slider Image</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'manage.slider')? 'active' : '' }}">
+              <a href="{{ route('manage.slider') }}"><i class="ti-more"></i>Manage slider</a></li>
+          </ul>
+        </li> 
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  

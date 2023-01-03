@@ -284,7 +284,7 @@ class ProductController extends Controller
 
         $notification = array(
             'message' => 'Your Product Inactive',
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         );
 
         return redirect()->back()->with($notification);
@@ -297,7 +297,7 @@ class ProductController extends Controller
 
         $notification = array(
             'message' => 'Your Product Active',
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         );
 
         return redirect()->back()->with($notification);
