@@ -25,37 +25,39 @@ use App\Http\Controllers\Home\IndexController;
 
 /* ------------- Admin Route --------------- */
 
+
 Route::prefix('admin')->group(function() {
 
     Route::get('/login',[AdminController::class, 'Index'])->name('login_form');
 
     Route::post('/login/owner',[AdminController::class, 'Login'])->name('admin.login');
 
+Route::middleware(['auth:admin'])->group(function(){
 
     Route::get('/dashboard',[AdminController::class, 'Dashboard'])
-    ->name('admin.dashboard')->middleware('admin');
+    ->name('admin.dashboard')->middleware('auth:admin');
 
-    Route::get('/admin/logout',[AdminController::class, 'AdminLogout'])
+    Route::get('/logout',[AdminController::class, 'AdminLogout'])
     ->name('admin.logout')->middleware('admin');
 
     Route::get('/register/owner',[AdminController::class, 'AdminRegister'])->name('admin.register');
 
     Route::post('/register/create',[AdminController::class, 'RegisterCreate'])->name('admin.register.create');
 
-    Route::get('/admin/profile',[AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+    Route::get('/profile',[AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
 
-    Route::get('/admin/profile/edit',[AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
+    Route::get('/profile/edit',[AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
-    Route::post('/admin/profile/store',[AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::post('/profile/store',[AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
-    Route::get('/admin/change/password',[AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::get('/change/password',[AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 
-    Route::post('/admin/update/password',[AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
+    Route::post('/update/password',[AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
 });
-
+});
 // Admin Brand All Route 
-
+Route::middleware(['auth:admin'])->group(function(){
 Route::prefix('brand')->group(function() {
 
     Route::get('/view',[BrandController::class, 'BrandView'])->name('all.brand');
@@ -65,15 +67,16 @@ Route::prefix('brand')->group(function() {
     Route::get('/delete/{id}',[BrandController::class, 'BrandDelete'])->name('brand.delete');
 
 });
+});
 
 // End Admin Brand Route 
 
 
 // Admin Category All Route
-
+Route::middleware(['auth:admin'])->group(function(){
 Route::prefix('category')->group(function() {
 
-    Route::get('/view',[CategoryController::class, 'CategoryView'])->name('all.category');
+    Route::get('/view',[CategoryController::class, 'CategoryView'])->name('all.category')->middleware('auth:admin');
     Route::post('/store',[CategoryController::class, 'CategoryStore'])->name('category.store');
     Route::get('/edit/{id}',[CategoryController::class, 'CategoryEdit'])->name('category.edit');
     Route::post('/update',[CategoryController::class, 'CategoryUpdate'])->name('category.update');
@@ -99,9 +102,10 @@ Route::prefix('category')->group(function() {
     Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubSubCategoryController::class, 'GetSubSubCategory']);
 
 });
+});
 
 // Admin Product All Route
-
+Route::middleware(['auth:admin'])->group(function(){
 Route::prefix('product')->group(function() {
 
     Route::get('/add',[ProductController::class, 'AddProduct'])->name('add.product');
@@ -118,11 +122,12 @@ Route::prefix('product')->group(function() {
 
 
 });
+});
 
 // End Admin Product All Route
 
 // Admin Slider All Route
-
+Route::middleware(['auth:admin'])->group(function(){
 Route::prefix('slider')->group(function() {
 
     Route::get('/manage',[SliderController::class, 'ManageSlider'])->name('manage.slider');
@@ -133,6 +138,7 @@ Route::prefix('slider')->group(function() {
     Route::get('/inactive/{id}',[SliderController::class, 'SliderInactive'])->name('slider.inactive');
     Route::get('/active/{id}',[SliderController::class, 'SliderActive'])->name('slider.active');
 
+});
 });
 
 // End Admin Slider All Route
