@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +15,8 @@ class IndexController extends Controller
     
     public function Index() {
 
-        return view('frontend.index');
+        $products = Product::where('status', 1)->orderBy('id','DESC')->get();
+        return view('frontend.index', compact('products'));
 
     }
 

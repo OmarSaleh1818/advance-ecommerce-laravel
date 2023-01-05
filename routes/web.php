@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Home\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,6 +163,10 @@ Route::controller(IndexController::class)->group(function() {
 
 });
 
+/////// Multi Language All Route /////////
+
+Route::get('/language/english',[LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/arabic',[LanguageController::class, 'Arabic'])->name('arabic.language');
 
 
 
