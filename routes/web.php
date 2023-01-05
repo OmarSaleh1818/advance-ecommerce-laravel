@@ -159,6 +159,7 @@ Route::controller(IndexController::class)->group(function() {
     Route::post('/user/profile/store', 'UserProfileStore')->name('user.profile.store');
     Route::get('/change/password', 'ChangePassword')->name('change.password');
     Route::post('/user/password/update', 'UserPasswordUpdate')->name('user.password.update');
+    Route::get('/product/details/{id}/{slug}', 'ProductDetails');
 
 
 });
@@ -168,7 +169,7 @@ Route::controller(IndexController::class)->group(function() {
 Route::get('/language/english',[LanguageController::class, 'English'])->name('english.language');
 Route::get('/language/arabic',[LanguageController::class, 'Arabic'])->name('arabic.language');
 
-
+/////// End Multi Language All Route /////////
 
 Route::get('/dashboard', function () {
     return view('dashboard');

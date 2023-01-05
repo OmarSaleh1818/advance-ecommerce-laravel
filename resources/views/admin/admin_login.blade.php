@@ -1,123 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="{{ asset('panel/assets/images/favicon.png') }}" >
-        <!--Page title-->
-        <title>Admin Ecommerce Project</title>
-        <!--bootstrap-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/bootstrap.min.css') }}">
-        <!--font awesome-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/all.min.css') }}">
-        <!-- metis menu -->
-        <link rel="stylesheet" href="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/css/metisMenu.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/css/mm-vertical-hover.css') }}">
-        <!-- chart -->
-   
-        <!-- <link rel="stylesheet" href="assets/plugins/chartjs-bar-chart/chart.css"> -->
-        <!--Custom CSS-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/style.css') }}">
-    </head>
-    <body id="page-top">
-        <!-- preloader -->
-        <div class="preloader">
-            <img src="{{ asset('panel/assets/images/preloader.gif') }}" alt="">
-        </div>
-
         
-        <!-- wrapper -->
-          <div class="wrapper without_header_sidebar">
-            <!-- contnet wrapper -->
-            <div class="content_wrapper">
-                    <!-- page content -->
-                    <div class="login_page center_container">
-                        <div class="center_content">
-                            <div class="logo">
-                                <img src="{{ asset('panel/assets/images/logo_omar.png') }}" alt="" class="img-fluid">
+        <meta charset="utf-8" />
+        <title>Login | Admin & Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('v2/assets/images/favicon.ico')}}">
+
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('v2/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{ asset('v2/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{ asset('v2/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+    </head>
+
+    <body class="auth-body-bg">
+        <div class="bg-overlay"></div>
+        <div class="wrapper-page">
+            <div class="container-fluid p-0">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="text-center mt-4">
+                            <div class="mb-3">
+                                <a href="index.html" class="auth-logo">
+                                    <img src="{{ asset('backend/images/logo_omar.png')}}" height="100" class="logo-dark mx-auto" alt="">
+                                </a>
                             </div>
-
-                            @if(Session::has('error'))
-
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>{{ session::get('error')}}</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            @endif
-
-                            <form action="{{ route('admin.login') }}" class="d-block" method="post">
-                                @csrf
-                                
-                                <div class="form-group icon_parent">
-                                    <label for="password">Email</label>
-                                    <input id="email" type="email" class="form-control"  name="email" placeholder="Email Address">
-                                    <span class="icon_soon_bottom_right"><i class="fas fa-envelope"></i></span>
-                                 
+                        </div>
+    
+                        <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
+    
+                        <div class="p-3">
+                            <form class="form-horizontal mt-3" method="POST" action="{{ route('admin.login') }}">
+                                  @csrf    
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="email "type="email" 
+                                        name="email" required="" placeholder="Email">
+                                    </div>
                                 </div>
-                                <div class="form-group icon_parent">
-                                    <label for="password">Password</label>
-       <input id="password" type="password" class="form-control"   name="password" required autocomplete="current-password" placeholder="Password">
-                                        
-                                    <span class="icon_soon_bottom_right"><i class="fas fa-unlock"></i></span>
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="password" type="password" 
+                                        name="password" required="" placeholder="Password">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="chech_container">Remember me
-                                        <input type="checkbox" name="remember" id="remember" >
-                                        <span class="checkmark"></span>
-                                    </label>
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="remember">
+                                            <label class="form-label ms-1" for="customCheck1">Remember me</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <a class="registration" href="{{ route('admin.register') }}">Create new account</a><br>
-                                    <a href=" " class="text-white">I forgot my password</a>
-                                    <button type="submit" class="btn btn-blue">Login</button>
+    
+                                <div class="form-group mb-3 text-center row mt-3 pt-1">
+                                    <div class="col-12">
+                                        <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log In</button>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mb-0 row mt-2">
+                                    <div class="col-sm-7 mt-3">
+                                        <a href="" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                    </div>
+                                    <div class="col-sm-5 mt-3">
+                                        <a href="{{ route('admin.register') }}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
+                                    </div>
                                 </div>
                             </form>
-                            <div class="footer">
-                               <p>Copyright &copy; 2020 <a href="https://easylearningbd.com/">Omar Abdullah</a>. All rights reserved.</p>
-                            </div>
-                            
                         </div>
+                        <!-- end -->
                     </div>
-            </div><!--/ content wrapper -->
-        </div><!--/ wrapper -->
+                    <!-- end cardbody -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end -->
 
+        <!-- JAVASCRIPT -->
+        <script src="{{ asset('v2/assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/node-waves/waves.min.js')}}"></script>
 
-        
-        <!-- jquery -->
-        <script src="{{ asset('panel/assets/js/jquery.min.js') }}"></script>
-        <!-- popper Min Js -->
-        <script src="{{ asset('panel/assets/js/popper.min.js') }}"></script>
-        <!-- Bootstrap Min Js -->
-        <script src="{{ asset('panel/assets/js/bootstrap.min.js') }}"></script>
-        <!-- Fontawesome-->
-        <script src="{{ asset('panel/assets/js/all.min.js') }}"></script>
-        <!-- metis menu -->
-        <script src="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/js/metismenu.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/js/mm-vertical-hover.js') }}"></script>
-        <!-- nice scroll bar -->
-        <script src="{{ asset('panel/assets/plugins/scrollbar/jquery.nicescroll.min.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/scrollbar/scroll.active.js') }}"></script>
-        <!-- counter -->
-        <script src="{{ asset('panel/assets/plugins/counter/js/counter.js') }}"></script>
-        <!-- chart -->
-   <script src="{{ asset('panel/assets/plugins/chartjs-bar-chart/Chart.min.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/chartjs-bar-chart/chart.js') }}"></script>
-        <!-- pie chart -->
-        <script src="{{ asset('panel/assets/plugins/pie_chart/chart.loader.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/pie_chart/pie.active.js') }}"></script>
- 
- 
-        <!-- Main js -->
-        <script src="{{ asset('panel/assets/js/main.js') }}"></script>
+        <script src="{{ asset('v2/assets/js/app.js')}}"></script>
 
-    
-     
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        <script>
+            @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+                case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
+
+                case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
+
+                case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
+
+                case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break; 
+            }
+            @endif 
+        </script>
 
     </body>
 </html>
