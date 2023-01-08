@@ -16,8 +16,9 @@ class IndexController extends Controller
     
     public function Index() {
 
-        $products = Product::where('status', 1)->orderBy('id','DESC')->get();
-        return view('frontend.index', compact('products'));
+        $products = Product::where('status', 1)->orderBy('id','DESC')->limit(6)->get();
+        $featured = Product::where('featured', 1)->orderBy('id','DESC')->limit(6)->get();
+        return view('frontend.index', compact('products', 'featured'));
 
     }
 
