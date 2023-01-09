@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\MultiImage;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +18,15 @@ class IndexController extends Controller
     public function Index() {
 
         $products = Product::where('status', 1)->orderBy('id','DESC')->limit(6)->get();
-        $featured = Product::where('featured', 1)->orderBy('id','DESC')->limit(6)->get();
-        return view('frontend.index', compact('products', 'featured'));
+        $featured = Product::where('featured', 1)->where('status',1)->orderBy('id','DESC')->limit(6)->get();
+        $special_offers = Product::where('special_offers', 1)->where('status',1)->orderBy('id','DESC')->limit(6)->get();
+        $special_deals = Product::where('special_deals', 1)->where('status',1)->orderBy('id','DESC')->limit(3)->get();
+
+        $skip_category0 = Category::skip(0)->first();
+        $skip_product0 = Product::where('status',1)->where('category_id', $skip_category0->id)->orderBy('id','DESC')->get();
+        $skip_category1 = Category::skip(1)->first();
+        $skip_product1 = Product::where('status',1)->where('category_id', $skip_category1->id)->orderBy('id','DESC')->get();
+        return view('frontend.index', compact('products', 'featured', 'special_offers', 'special_deals', 'skip_product0', 'skip_product1'));
 
     }
 

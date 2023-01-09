@@ -25,7 +25,7 @@
                <div class="col-12">	
                
                     <div class="row"> <!-- Row 1 -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Brand Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Category Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -60,7 +60,11 @@
                             </div>
                         </div> 
 
-                        <div class="col-md-4">
+                    </div><!-- End Row 1 -->
+
+                    <div class="row"> <!-- Row 2 -->
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -77,10 +81,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Row 1 -->
 
-                    <div class="row"> <!-- Row 2 -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Sub-SubCategory Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -98,7 +100,11 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                    </div> <!-- End Row 2 -->
+
+                    <div class="row"> <!-- Row 6 -->
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Name English <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -110,7 +116,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Name Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -121,11 +127,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- End Row 2 -->
 
-                    <div class="row"> <!-- Row 6 -->
+                    </div>
 
-                        <div class="col-md-4">
+                    <div class="row">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Quantity <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -136,7 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Selling Price <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -147,7 +155,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        
+                    </div> <!-- End Row 6 --> 
+
+                    <div class="row"> <!-- Row 3 -->
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Discount Price <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -158,11 +171,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    </div> <!-- End Row 6 --> 
 
-                    <div class="row"> <!-- Row 3 -->
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Code <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -177,24 +187,26 @@
                     </div> <!-- End Row 3 -->    
                     
                     <div class="row"> <!-- Row 4 -->
-                        <div class="col-md-4">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Tags English <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_tags_en" class="form-control" 
-                                    value="Lorem,Ipsum,Amet"data-role="tagsinput" value="{{ $products->product_tags_en }}"> 
+                                    data-role="tagsinput" value="{{ $products->product_tags_en }}"> 
                                     @error('product_tags_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Tags Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_tags_ar" class="form-control"
-                                    value="Lorem,Ipsum,Amet" data-role="tagsinput" value="{{ $products->product_tags_ar }}"> 
+                                     data-role="tagsinput" value="{{ $products->product_tags_ar }}"> 
                                     @error('product_tags_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -202,7 +214,11 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                    </div> <!-- End Row 4 --> 
+
+                    <div class="row"> <!-- Row 5 -->
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Size English <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -215,10 +231,7 @@
                             </div>
                         </div>
 
-                    </div> <!-- End Row 4 --> 
-
-                    <div class="row"> <!-- Row 5 -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Size Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -230,8 +243,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
 
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Color English <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -244,7 +261,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Product Color Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -259,6 +276,7 @@
                     </div> <!-- End Row 5 --> 
 
                     <div class="row"> <!-- Row 7 -->
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Short Description English <span class="text-danger">*</span></h5>
@@ -271,6 +289,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Short Description Arabic <span class="text-danger">*</span></h5>
@@ -287,6 +306,7 @@
                     </div> <!-- End Row 7 --> 
             
                     <div class="row"> <!-- Row 8 -->
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Long Description English <span class="text-danger">*</span></h5>
@@ -300,6 +320,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <h5>Long Description Arabic <span class="text-danger">*</span></h5>

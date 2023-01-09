@@ -178,7 +178,7 @@
                                 <h5>Product Tags English <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_tags_en" class="form-control" 
-                                    value="Lorem,Ipsum,Amet"data-role="tagsinput" required> 
+                                    data-role="tagsinput" required> 
                                     @error('product_tags_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -190,7 +190,7 @@
                                 <h5>Product Tags Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_tags_ar" class="form-control"
-                                    value="Lorem,Ipsum,Amet" data-role="tagsinput" required> 
+                                     data-role="tagsinput" required> 
                                     @error('product_tags_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
