@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\MultiImage;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -103,6 +104,25 @@ class IndexController extends Controller
         $product = Product::findOrFail($id);
         $multiimage = MultiImage::where('product_id', $id)->get();
         return view('frontend.product.product_details', compact('product', 'multiimage'));
+
+    }
+
+    public function TagsProduct($tag) {
+
+        $products = Product::where('status', 1)->where('product_tags_en', $tag)->where(
+            'product_tags_ar', $tag)->orderBy('id','DESC')->paginate();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        return view('frontend.tag.tags_view', compact('products', 'categories'));
+
+    }
+
+    public function SubCatProduct($subcat_id) {
+
+        $products = Product::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id','DESC')->paginate(4);
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        return view('frontend.product.subcategory_view', compact('products', 'categories'));
 
     }
     

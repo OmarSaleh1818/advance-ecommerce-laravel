@@ -41,12 +41,15 @@ Home Page
                         @endphp
                       @foreach($subcategories as $subcategory)
                       <div class="col-sm-12 col-md-3">
-                      <h2 class="title">@if(session()->get('language') == 'arabic') 
-                        {{ $subcategory->subcategory_name_ar }}
+                      <a href="{{ url('subcategory/product/'.$subcategory->id) }}">
+                        <h2 class="title">
+                        @if(session()->get('language') == 'arabic') 
+                          {{ $subcategory->subcategory_name_ar }}
                         @else
-                        {{ $subcategory->subcategory_name_en }}
+                          {{ $subcategory->subcategory_name_en }}
                         @endif
-                      </h2>
+                        </h2>
+                    </a>
                         @php 
                         $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)
                         ->orderBy('subsubcategory_name_en', 'ASC')->get();
@@ -392,7 +395,8 @@ Home Page
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
+                          <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                            <img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
                           <!-- /.image -->
                           
                           @php

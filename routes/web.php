@@ -159,8 +159,11 @@ Route::controller(IndexController::class)->group(function() {
     Route::post('/user/profile/store', 'UserProfileStore')->name('user.profile.store');
     Route::get('/change/password', 'ChangePassword')->name('change.password');
     Route::post('/user/password/update', 'UserPasswordUpdate')->name('user.password.update');
+
     Route::get('/product/details/{id}/{slug}', 'ProductDetails');
 
+    Route::get('/product/tag/{tag}', 'TagsProduct');
+    Route::get('/subcategory/product/{subcat_id}', 'SubCatProduct');
 
 });
 
