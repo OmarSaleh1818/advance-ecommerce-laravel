@@ -164,6 +164,7 @@ Route::controller(IndexController::class)->group(function() {
 
     Route::get('/product/tag/{tag}', 'TagsProduct');
     Route::get('/subcategory/product/{subcat_id}', 'SubCatProduct');
+    Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', 'SubSubCatProduct');
 
 });
 

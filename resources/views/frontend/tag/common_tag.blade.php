@@ -21,34 +21,34 @@
                     $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
                 @endphp
                 @foreach($subcategories as $subcategory)
-                <div class="col-sm-12 col-md-3">
+                    <div class="col-sm-12 col-md-3">
 
-                <a href="{{ url('subcategory/product/'.$subcategory->id) }}">
-                    <h2 class="title">
-                    @if(session()->get('language') == 'arabic') 
-                    {{ $subcategory->subcategory_name_ar }}
-                    @else
-                    {{ $subcategory->subcategory_name_en }}
-                    @endif
-                    </h2>
-                </a>
+                    <a href="{{ url('subcategory/product/'.$subcategory->id) }}">
+                        <h2 class="title">
+                        @if(session()->get('language') == 'arabic') 
+                        {{ $subcategory->subcategory_name_ar }}
+                        @else
+                        {{ $subcategory->subcategory_name_en }}
+                        @endif
+                        </h2>
+                    </a>
 
-                @php 
-                $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)
-                ->orderBy('subsubcategory_name_en', 'ASC')->get();
-                @endphp
-                @foreach($subsubcategories as $subsubcategory)
-                <ul class="links list-unstyled">
-                    <li><a href="#">
-                    @if(session()->get('language') == 'arabic') 
-                    {{ $subsubcategory->subsubcategory_name_ar }}
-                    @else
-                    {{ $subsubcategory->subsubcategory_name_en }}
-                    @endif
-                    </a></li>
-                </ul>
-                @endforeach
-                </div>
+                    @php 
+                    $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)
+                    ->orderBy('subsubcategory_name_en', 'ASC')->get();
+                    @endphp
+                    @foreach($subsubcategories as $subsubcategory)
+                    <ul class="links list-unstyled">
+                        <li><a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">
+                        @if(session()->get('language') == 'arabic') 
+                        {{ $subsubcategory->subsubcategory_name_ar }}
+                        @else
+                        {{ $subsubcategory->subsubcategory_name_en }}
+                        @endif
+                        </a></li>
+                    </ul>
+                    @endforeach
+                    </div>
                 @endforeach
                 <!-- /.col -->
             </div>

@@ -61,7 +61,7 @@ Product Tag
                 @endphp
                         @foreach($subcategories as $subcategory)
                         <ul>
-                          <li><a href="#">
+                          <li><a href="{{ url('subcategory/product/'.$subcategory->id) }}">
                             @if(session()->get('language') == 'arabic')
                                 {{ $subcategory->subcategory_name_ar }}
                             @else
@@ -178,7 +178,7 @@ Product Tag
         
         <div id="category" class="category-carousel hidden-xs">
           <div class="item">
-            <div class="image"> <img src="{{ asset('frontend/assets/images/banners/cat-banner-1.jpg') }}" alt=""
+            <div class="image"> <img src="{{ asset('upload/banner.jpg') }}" alt=""
              class="img-responsive"> </div>
             <div class="container-fluid">
               <div class="caption vertical-top text-left">

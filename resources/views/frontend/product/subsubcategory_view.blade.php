@@ -5,7 +5,7 @@
 @if(session()->get('language') == 'arabic')
 منتجات محددة
 @else
-Sub Category Product
+SubSub Category Product
 @endif
 @endsection
 

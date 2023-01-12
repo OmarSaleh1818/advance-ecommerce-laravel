@@ -56,7 +56,7 @@ Home Page
                         @endphp
                         @foreach($subsubcategories as $subsubcategory)
                         <ul class="links list-unstyled">
-                          <li><a href="#">
+                          <li><a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">
                           @if(session()->get('language') == 'arabic') 
                           {{ $subsubcategory->subsubcategory_name_ar }}
                           @else
@@ -233,34 +233,8 @@ Home Page
         <!-- ============================================== NEWSLETTER: END ============================================== --> 
         
         <!-- ============================================== Testimonials============================================== -->
-        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-          <div id="advertisement" class="advertisement">
-            <div class="item">
-              <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>
-              <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-              <div class="clients_author">John Doe <span>Abc Company</span> </div>
-              <!-- /.container-fluid --> 
-            </div>
-            <!-- /.item -->
-            
-            <div class="item">
-              <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>
-              <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-              <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-            </div>
-            <!-- /.item -->
-            
-            <div class="item">
-              <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>
-              <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-              <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-              <!-- /.container-fluid --> 
-            </div>
-            <!-- /.item --> 
-            
-          </div>
-          <!-- /.owl-carousel --> 
-        </div>
+        
+        @include('frontend.common.testimonials')
         
         <!-- ============================================== Testimonials: END ============================================== -->
         
@@ -584,7 +558,8 @@ Home Page
               <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
+                    <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                      <img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
                     <!-- /.image -->
                     
                     @php
