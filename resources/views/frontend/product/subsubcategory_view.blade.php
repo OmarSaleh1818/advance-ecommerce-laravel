@@ -282,7 +282,15 @@ SubSub Category Product
                             <img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
                           <!-- /.image -->
                           
-                          <div class="tag new"><span>new</span></div>
+                          @php
+                              $amount = $product->selling_price - $product->discount_price;
+                              $discount = ($amount/$product->selling_price) * 100;
+                          @endphp
+                          @if($product->discount_price == NULL)
+                            <div class="tag new"><span>new</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
                         </div>
                         <!-- /.product-image -->
                         

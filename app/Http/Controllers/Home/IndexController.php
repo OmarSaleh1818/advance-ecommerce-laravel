@@ -153,5 +153,23 @@ class IndexController extends Controller
 
     }
 
+    public function ProductViewAjax($id) {
+
+        $product = Product::findOrFail($id);
+
+        $color = $product->product_color_en;
+        $product_color_en = explode(',' , $color);
+
+        $size = $product->product_size_en;
+        $product_size_en = explode(',', $size);
+
+        return response()->json(array(
+            'product' => $product,
+            'color' => $product_color_en,
+            'size' => $product_size_en
+        ));
+
+    } 
+
 
 }

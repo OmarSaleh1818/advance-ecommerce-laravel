@@ -166,6 +166,8 @@ Route::controller(IndexController::class)->group(function() {
     Route::get('/subcategory/product/{subcat_id}', 'SubCatProduct');
     Route::get('/subsubcategory/product/{subsubcat_id}/{slug}', 'SubSubCatProduct');
 
+    Route::get('/product/model/view/{id}', 'ProductViewAjax');
+
 });
 
 /////// Multi Language All Route /////////
