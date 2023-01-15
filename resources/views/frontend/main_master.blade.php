@@ -104,7 +104,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Product Name</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong id="pname"></strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -116,7 +116,7 @@
             <div class="col-md-4">
 
                 <div class="card" style="width: 18rem;">
-                    <img src="" class="card-img-top" alt="..." style="height:200px;width:200px">
+                    <img src="" id="pimage" class="card-img-top" alt="..." style="height:200px;width:200px">
                 </div>
 
             </div>
@@ -124,11 +124,17 @@
             <div class="col-md-4">
 
                 <ul class="list-group">
-                    <li class="list-group-item">Product Prise: </li>
-                    <li class="list-group-item">Product Code: </li>
-                    <li class="list-group-item">Category: </li>
-                    <li class="list-group-item">Brand: </li>
-                    <li class="list-group-item">Stock: </li>
+                    <li class="list-group-item">Product Price: <strong class="text-danger">
+                        <span id="pprice"></span>SR</strong>
+                        <del id="oldprice"></del>SR
+                    </li>
+                    <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                    <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                    <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                    <li class="list-group-item">Stock: 
+                        <span class="badge badge-pill badge-success" id ="available" style="background:green;color:white;"></span>
+                        <span class="badge badge-pill badge-danger" id ="stockout" style="background:red;color:white;"></span>
+                    </li>
                 </ul>
 
             </div>
@@ -137,23 +143,15 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Choose Color</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="exampleFormControlSelect1" name="color">
+
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="sizeArea">
                     <label for="exampleFormControlSelect1">Choose Size</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="exampleFormControlSelect1" name="size">
+
                     </select>
                 </div>
 
@@ -188,7 +186,48 @@
             url:'/product/model/view/'+id,
             dataType:'json',
             success:function(data) {
-                
+                // console.log(data)
+                $('#pname').text(data.product.product_name_en);
+                $('#price').text(data.product.selling_price);
+                $('#pcode').text(data.product.product_code);
+                $('#pcategory').text(data.product.category.category_name_en);
+                $('#pbrand').text(data.product.brand.brand_name_en);
+                $('#pimage').attr('src','/'+data.product.product_thambnail);
+
+                // Product Price
+                if (data.product.discount_price == null) {
+                    $('#pprice').text('');
+                    $('#oldprice').text('');
+                    $('#pprice').text(data.product.selling_price);
+                }else{
+                    $('#pprice').text(data.product.discount_price);
+                    $('#oldprice').text(data.product.selling_price);
+                }
+
+                if (data.product.product_qty > 0) {
+                    $('#available').text('');
+                    $('#stockout').text('');
+                    $('#available').text('available');
+                } else {
+                    $('#available').text('');
+                    $('#stockout').text('');
+                    $('#stockout').text('stockout');
+                }
+
+                $('select[name="color"]').empty();
+                $.each(data.color,function(key,value){
+                    $('select[name="color"]').append('<option value=" '+value+' ">'+value+' </option>')
+                })
+
+                $('select[name="size"]').empty();
+                $.each(data.size,function(key,value){
+                    $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
+                    if (data.size == "") {
+                        $('#sizeArea').hide();
+                    } else {
+                        $('#sizeArea').show();
+                    }
+                })
             }
         })
     }

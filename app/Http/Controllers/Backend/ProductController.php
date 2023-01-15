@@ -227,9 +227,9 @@ class ProductController extends Controller
         unlink($oldImage);
 
         $image = $request->file('product_thambnail');
-        $name_gen = hexdec(uniqid().'.'.$image->getClientOriginalExtension());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(917,1000)->save('upload/products/main/'.$name_gen);
-        $save_url = 'upload/products/main/'.$name_gen ;
+        $save_url = 'upload/products/main/'.$name_gen;
 
         Product::findOrFail($pro_id)->update([
             'product_thambnail' => $save_url,
@@ -238,11 +238,11 @@ class ProductController extends Controller
         ]);
 
         $notification = array(
-			'message' => 'Product Main Image Updated Successfully',
-			'alert-type' => 'info'
-		);
+            'message' => 'Product Main Image Updated Successfully',
+            'alert-type' => 'info'
+        );
 
-		return redirect()->back()->with($notification);
+        return redirect()->back()->with($notification);
 
     }
 

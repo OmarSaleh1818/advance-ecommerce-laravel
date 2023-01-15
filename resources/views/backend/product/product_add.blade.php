@@ -162,7 +162,7 @@
                             <div class="form-group">
                                 <h5>Product Discount Price <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="discount_price" class="form-control" required> 
+                                    <input type="text" name="discount_price" class="form-control" > 
                                     @error('discount_price')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -206,7 +206,7 @@
                                 <h5>Product Size English <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_size_en" class="form-control" 
-                                    value="small,Mudium,Large"data-role="tagsinput" required> 
+                                    value="small,Mudium,Large"data-role="tagsinput" > 
                                     @error('product_size_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -218,7 +218,7 @@
                                 <h5>Product Size Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_size_ar" class="form-control" 
-                                    value="صغير,وسط,كبير"data-role="tagsinput" required> 
+                                    value="صغير,وسط,كبير"data-role="tagsinput" > 
                                     @error('product_size_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -234,7 +234,7 @@
                                 <h5>Product Color English <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_color_en" class="form-control"
-                                    value="red,blue,green" data-role="tagsinput" required> 
+                                    value="red,blue,green" data-role="tagsinput" > 
                                     @error('product_color_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -247,7 +247,7 @@
                                 <h5>Product Color Arabic <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="product_color_ar" class="form-control" 
-                                    value="ازرق,احمر,اصفر"data-role="tagsinput" required> 
+                                    value="ازرق,احمر,اصفر"data-role="tagsinput" > 
                                     @error('product_color_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror

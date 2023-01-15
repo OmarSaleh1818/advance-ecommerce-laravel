@@ -1,115 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="{{ asset('panel/assets/images/favicon.png') }}" >
-        <!--Page title-->
-        <title>Admin Ecommerce Project</title>
-        <!--bootstrap-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/bootstrap.min.css') }}">
-        <!--font awesome-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/all.min.css') }}">
-        <!-- metis menu -->
-        <link rel="stylesheet" href="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/css/metisMenu.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/css/mm-vertical-hover.css') }}">
-        <!-- chart -->
-   
-        <!-- <link rel="stylesheet" href="assets/plugins/chartjs-bar-chart/chart.css"> -->
-        <!--Custom CSS-->
-        <link rel="stylesheet" href="{{ asset('panel/assets/css/style.css') }}">
-    </head>
-    <body id="page-top">
-        <!-- preloader -->
-        <div class="preloader">
-            <img src="{{ asset('panel/assets/images/preloader.gif') }}" alt="">
-        </div>
-
         
-         <div class="wrapper without_header_sidebar">
-            <!-- contnet wrapper -->
-            <div class="content_wrapper">
-                <!-- page content -->
-                <div class="registration_page center_container">
-                    <div class="center_content">
-                        <div class="logo">
-                            <img src="{{ asset('panel/assets/images/logo.png') }}" alt="" class="img-fluid">
+        <meta charset="utf-8" />
+        <title>Register | Admin & Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('v2/assets/images/favicon.ico')}}">
+
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('v2/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{ asset('v2/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{ asset('v2/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body class="auth-body-bg">
+        <div class="bg-overlay"></div>
+        <div class="wrapper-page">
+            <div class="container-fluid p-0">
+                <div class="card">
+                    <div class="card-body">
+    
+                        <div class="text-center mt-4">
+                            <div class="mb-3">
+                                <a href="index.html" class="auth-logo">
+                                    <img src="{{ asset('backend/images/logo_omar.png')}}" height="100" class="logo-dark mx-auto" alt="">
+                                </a>
+                            </div>
                         </div>
-                        <form action="{{ route('admin.register.create') }}" method="post">
-                            @csrf
-                           
-                            <div class="form-group icon_parent">
-                                <label for="uname">Username</label>
-                                <input id="name" type="text" class="form-control" name="name"  placeholder="Full Name">
-                                
-                                <span class="icon_soon_bottom_right"><i class="fas fa-user"></i></span>
-                            </div>
-                            <div class="form-group icon_parent">
-                                <label for="email">E-mail</label>
-                                <input id="email" type="email" class="form-control" name="email" placeholder="Email Address">
+    
+                        <h4 class="text-muted text-center font-size-18"><b>Register</b></h4>
+    
+                        <div class="p-3">
 
-                                
-                                <span class="icon_soon_bottom_right"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <div class="form-group icon_parent">
-                                <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" name="password" required  placeholder="Password">
+                            <form class="form-horizontal mt-3" method="POST" action="{{ route('admin.register.create') }}">
+                                 @csrf
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="name" type="text" 
+                                         name="name" required="" placeholder="Full Name">
+                                    </div>
+                                </div>
 
-                                 
-                                <span class="icon_soon_bottom_right"><i class="fas fa-unlock"></i></span>
-                            </div>
-                            <div class="form-group icon_parent">
-                                <label for="rtpassword">Re-type Password</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
-                                <span class="icon_soon_bottom_right"><i class="fas fa-unlock"></i></span>
-                            </div>
-                            <div class="form-group">
-                                <a class="registration" href="{{ route('admin.login') }}">Already have an account</a><br>
-                                <button type="submit" class="btn btn-blue">Signup</button>
-                            </div>
-                        </form>
-                        <div class="footer">
-                            <p>Copyright &copy; 2020 <a href="https://easylearningbd.com/">easy Learning</a>. All rights reserved.</p>
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="email" type="email" 
+                                         name="email" required="" placeholder="Email">
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="password" type="password" 
+                                         name="password" required="" placeholder="Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" id="password-confirm" type="password" 
+                                         name="password_confirmation" required="" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="form-label ms-1 fw-normal" for="customCheck1">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group text-center row mt-3 pt-1">
+                                    <div class="col-12">
+                                        <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Register</button>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mt-2 mb-0 row">
+                                    <div class="col-12 mt-3 text-center">
+                                        <a href="{{ route('admin.login') }}" class="text-muted">Already have account?</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- end form -->
                         </div>
                     </div>
+                    <!-- end cardbody -->
                 </div>
-            </div><!--/ content wrapper -->
-        </div><!--/ wrapper -->
-
-
+                <!-- end card -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end -->
         
-        <!-- jquery -->
-        <script src="{{ asset('panel/assets/js/jquery.min.js') }}"></script>
-        <!-- popper Min Js -->
-        <script src="{{ asset('panel/assets/js/popper.min.js') }}"></script>
-        <!-- Bootstrap Min Js -->
-        <script src="{{ asset('panel/assets/js/bootstrap.min.js') }}"></script>
-        <!-- Fontawesome-->
-        <script src="{{ asset('panel/assets/js/all.min.js') }}"></script>
-        <!-- metis menu -->
-        <script src="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/js/metismenu.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/metismenu-3.0.4/assets/js/mm-vertical-hover.js') }}"></script>
-        <!-- nice scroll bar -->
-        <script src="{{ asset('panel/assets/plugins/scrollbar/jquery.nicescroll.min.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/scrollbar/scroll.active.js') }}"></script>
-        <!-- counter -->
-        <script src="{{ asset('panel/assets/plugins/counter/js/counter.js') }}"></script>
-        <!-- chart -->
-   <script src="{{ asset('panel/assets/plugins/chartjs-bar-chart/Chart.min.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/chartjs-bar-chart/chart.js') }}"></script>
-        <!-- pie chart -->
-        <script src="{{ asset('panel/assets/plugins/pie_chart/chart.loader.js') }}"></script>
-        <script src="{{ asset('panel/assets/plugins/pie_chart/pie.active.js') }}"></script>
- 
- 
-        <!-- Main js -->
-        <script src="{{ asset('panel/assets/js/main.js') }}"></script>
 
-    
-     
+        <!-- JAVASCRIPT -->
+        <script src="{{ asset('v2/assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{ asset('v2/assets/libs/node-waves/waves.min.js')}}"></script>
 
+        <script src="{{ asset('v2/assets/js/app.js')}}"></script>
 
     </body>
 </html>
+
+
