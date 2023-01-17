@@ -71,6 +71,7 @@
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -105,7 +106,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong id="pname"></strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -142,25 +143,26 @@
             <div class="col-md-4">
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Choose Color</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="color">
+                    <label for="color">Choose Color</label>
+                    <select class="form-control" id="color" name="color">
 
                     </select>
                 </div>
 
                 <div class="form-group" id="sizeArea">
-                    <label for="exampleFormControlSelect1">Choose Size</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="size">
+                    <label for="size">Choose Size</label>
+                    <select class="form-control" id="size" name="size">
 
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Quantity: </label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1">
+                    <label for="quantity">Quantity: </label>
+                    <input type="number" class="form-control" id="quantity" value="1" min="1">
                 </div>
              
-                <button type="submit" class="btn btn-primary mb-2">Add To Cart</button>
+                <input type="hidden" id="product_id">
+                <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add To Cart</button>
             </div>
 
         </div>     
@@ -179,6 +181,8 @@
         }
     })
 
+    // Start Product View
+
     function productView(id) {
         // alert(id)
         $.ajax({
@@ -193,6 +197,9 @@
                 $('#pcategory').text(data.product.category.category_name_en);
                 $('#pbrand').text(data.product.brand.brand_name_en);
                 $('#pimage').attr('src','/'+data.product.product_thambnail);
+
+                $('#product_id').val(id);
+                $('#quantity').val(1);
 
                 // Product Price
                 if (data.product.discount_price == null) {
@@ -231,6 +238,60 @@
             }
         })
     }
+
+    // End Product View
+
+    // Start Add To Cart Product
+
+    function addToCart() {
+        var product_name = $('#pname').text();
+        var id = $('#product_id').val();
+        var color = $('#color option:selected').text(); 
+        var size = $('#size option:selected').text(); 
+        var quantity = $('#quantity').val();
+        $.ajax({
+            type:"POST",
+            dataType: 'json',
+            data:{
+                color:color, size:size, quantity:quantity, product_name:product_name
+            },
+            url:"/cart/data/store/"+id,
+            success:function(data) {
+                $('#closeModel').click();
+                // console.log(data)
+
+                // Start Message
+
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                    
+                }
+                // End Message
+
+            }
+
+        })
+    }
+
+
+    // End Add To Cart Product
+
+
 
 </script>
 

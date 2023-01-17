@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\LanguageController;
+use App\Http\Controllers\Home\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +152,8 @@ Route::prefix('slider')->group(function() {
 
 
 /* ------------- All User Route -------------*/
+
+//  Start Index Route
 Route::controller(IndexController::class)->group(function() {
     
     Route::get('/','Index');
@@ -169,6 +172,18 @@ Route::controller(IndexController::class)->group(function() {
     Route::get('/product/model/view/{id}', 'ProductViewAjax');
 
 });
+
+// End Index Route
+
+//  Start Cart Route
+
+Route::controller(CartController::class)->group(function() {
+
+    Route::post('/cart/data/store/{id}', 'AddToCart');
+
+});
+
+// End Cart Route
 
 /////// Multi Language All Route /////////
 
