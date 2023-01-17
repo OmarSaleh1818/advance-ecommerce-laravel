@@ -175,11 +175,13 @@
 
 <script type="text/javascript">
 
-    $.ajaxsetup({
-        header:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+$.ajaxSetup({
+    beforeSend: function(xhr, type) {
+        if (!type.crossDomain) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
         }
-    })
+    },
+});
 
     function productView(id) {
         // alert(id)

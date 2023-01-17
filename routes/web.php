@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\LanguageController;
+use App\Http\Controllers\Home\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,5 +187,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/addcart/store/{id}',[CartController::class, 'AddCartStore'])->name('addcart.store');
 
 require __DIR__.'/auth.php';
