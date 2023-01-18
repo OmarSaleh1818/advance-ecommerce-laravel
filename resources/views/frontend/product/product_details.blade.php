@@ -255,8 +255,8 @@
 										<span class="label">Qty :</span>
 									</div>
 									
-									<div class="col-sm-2">				
-										<input type="text" class="form-control" id="quantity" value="1" min="1">
+									<div class="col-sm-3">				
+										<input type="number" class="form-control" id="qty" value="1" min="1">
 									</div>
 
 									<input type="hidden" id="product_id" value="{{ $product->id }}" min="1">

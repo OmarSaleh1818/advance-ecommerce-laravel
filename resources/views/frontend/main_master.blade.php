@@ -157,8 +157,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Quantity: </label>
-                    <input type="number" class="form-control" id="quantity" value="1" min="1">
+                    <label for="qty">Quantity: </label>
+                    <input type="number" class="form-control" id="qty" value="1" min="1">
                 </div>
              
                 <input type="hidden" id="product_id">
@@ -175,11 +175,13 @@
 
 <script type="text/javascript">
 
-    $.ajaxsetup({
-        header:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-        }
-    })
+    $.ajaxSetup({
+        beforeSend: function(xhr, type) {
+            if (!type.crossDomain) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+            }
+        },
+    });
 
     // Start Product View
 
@@ -199,7 +201,7 @@
                 $('#pimage').attr('src','/'+data.product.product_thambnail);
 
                 $('#product_id').val(id);
-                $('#quantity').val(1);
+                $('#qty').val(1);
 
                 // Product Price
                 if (data.product.discount_price == null) {
@@ -248,7 +250,7 @@
         var id = $('#product_id').val();
         var color = $('#color option:selected').text(); 
         var size = $('#size option:selected').text(); 
-        var quantity = $('#quantity').val();
+        var quantity = $('#qty').val();
         $.ajax({
             type:"POST",
             dataType: 'json',
@@ -257,8 +259,9 @@
             },
             url:"/cart/data/store/"+id,
             success:function(data) {
+                miniCart();
                 $('#closeModel').click();
-                // console.log(data)
+                //  console.log(data)
 
                 // Start Message
 
@@ -282,16 +285,95 @@
                     
                 }
                 // End Message
-
             }
-
         })
     }
 
-
     // End Add To Cart Product
 
+</script>
 
+<script type="text/javascript">
+
+    function miniCart() {
+        $.ajax({
+            type:'GET',
+            url:'/product/mini/cart',
+            dataType:'json',
+            success:function(response) {
+
+                var miniCart = ""
+
+                $.each(response.carts, function(key, value) {
+
+                    $('span[id="cartSubTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+                    miniCart += 
+                        `<div class="cart-item product-summary">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                                    <div class="price">${value.price} * ${value.qty}</div>
+                                </div>
+                                <div class="col-xs-1 action"> 
+                                    <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)">
+                                    <i class="fa fa-trash"></i></button> 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.cart-item -->
+                        <div class="clearfix"></div>
+                        <hr>`
+                });
+
+                $('#miniCart').html(miniCart);
+            }
+        })
+
+    }
+    miniCart();
+
+    // miniCart Remove Start
+
+    function miniCartRemove(rowId) {
+
+        $.ajax({
+            type:'GET',
+            url:'/minicart/product/remove/'+rowId,
+            dataType:'json',
+            success:function(data) {
+                miniCart();
+
+                // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
+            }
+        });
+
+    }
+
+
+    // End miniCart Remove
 
 </script>
 
