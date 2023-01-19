@@ -604,7 +604,12 @@ Home Page
                             <i class="fa fa-shopping-cart"></i> </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
-                        <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                        
+                          <button class="btn btn-primary icon" type="button" title="Wishlist"
+                            data-toggle="modal" data-target="#exampleModal" id="{{ $product->id}}"
+                            onclick="addToWishlist(this.id)"> 
+                            <i class="fa fa-heart"></i> </button> 
+                        
                         <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                       </ul>
                     </div>

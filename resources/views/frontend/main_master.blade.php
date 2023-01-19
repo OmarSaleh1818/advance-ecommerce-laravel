@@ -377,6 +377,24 @@
 
 </script>
 
+<!-- Wishlist Page Start -->
+
+<script type="text/javascript">
+
+    function addToWishlist(product_id) {
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'/addto/wishlist/'+product_id
+        })
+    }
+
+</script>
+
+<!-- End Wishlist Page -->
+
+
+
 <!-- Add To Cart Product Modal: END -->
 
 </body>

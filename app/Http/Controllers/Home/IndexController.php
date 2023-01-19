@@ -18,7 +18,7 @@ class IndexController extends Controller
     
     public function Index() {
 
-        $products = Product::where('status', 1)->orderBy('id','DESC')->limit(6)->get();
+        $products = Product::where('status', 1)->orderBy('id','DESC')->get();
         $featured = Product::where('featured', 1)->where('status',1)->orderBy('id','DESC')->limit(6)->get();
         $special_offers = Product::where('special_offers', 1)->where('status',1)->orderBy('id','DESC')->limit(6)->get();
         $special_deals = Product::where('special_deals', 1)->where('status',1)->orderBy('id','DESC')->limit(3)->get();
