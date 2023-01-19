@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\LanguageController;
 use App\Http\Controllers\Home\CartController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,6 +187,18 @@ Route::controller(CartController::class)->group(function() {
 });
 
 // End Cart Route
+
+//  Start Wishlist Route
+
+Route::controller(WishlistController::class)->group(function() {
+
+    Route::post('/add-to/wishlist/{product_id}', 'AddToWishlist');
+    Route::get('/wishlist', 'WishlistPage')->name('wishlist');
+    Route::get('/get/wishlist/product', 'GetWishlistProduct');
+
+});
+
+// End Wishlist Route
 
 /////// Multi Language All Route /////////
 
