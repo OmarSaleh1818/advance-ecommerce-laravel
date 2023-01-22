@@ -33,7 +33,7 @@ Wishlist Page
                                         </tr>
                                     </thead>
                                     <tbody id="wishlist">
-                                        
+                                       
                                         
                                     </tbody>
                                 </table>

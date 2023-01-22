@@ -188,14 +188,19 @@ Route::controller(CartController::class)->group(function() {
 
 // End Cart Route
 
+
 //  Start Wishlist Route
 
-Route::controller(WishlistController::class)->group(function() {
+Route::post('/add-to/wishlist/{product_id}',[WishlistController::class, 'AddToWishlist']);
 
-    Route::post('/add-to/wishlist/{product_id}', 'AddToWishlist');
-    Route::get('/wishlist', 'WishlistPage')->name('wishlist');
-    Route::get('/get/wishlist/product', 'GetWishlistProduct');
-
+Route::middleware('auth')->group(function () {
+    Route::controller(WishlistController::class)->group(function() {
+     
+        Route::get('/wishlist', 'WishlistPage')->name('wishlist');
+        Route::get('/get/wishlist/product', 'GetWishlistProduct');
+        Route::get('/wishlist/product/remove/{id}', 'RemoveWishlist');
+    
+    });
 });
 
 // End Wishlist Route
