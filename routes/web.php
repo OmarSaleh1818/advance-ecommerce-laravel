@@ -184,6 +184,9 @@ Route::controller(CartController::class)->group(function() {
     Route::get('/product/mini/cart', 'AddMiniCart');
     Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
 
+    Route::get('/mycart', 'MyCart')->name('mycart');
+    Route::get('/mycart/product', 'MyCartPage');
+
 });
 
 // End Cart Route
