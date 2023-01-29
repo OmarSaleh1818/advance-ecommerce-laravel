@@ -14,6 +14,7 @@ use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\LanguageController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CartPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -184,9 +185,15 @@ Route::controller(CartController::class)->group(function() {
     Route::get('/product/mini/cart', 'AddMiniCart');
     Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
 
-    Route::get('/mycart', 'MyCart')->name('mycart');
-    Route::get('/mycart/product', 'MyCartPage');
+});
 
+Route::middleware('auth')->group(function () {
+    Route::controller(CartPageController::class)->group(function() {
+
+        Route::get('/mycart', 'MyCartPage');
+        Route::get('/mycart/product', 'MyCartProduct');
+
+    });
 });
 
 // End Cart Route

@@ -71,18 +71,6 @@ class CartController extends Controller
         return response()->json(['success' => 'Your Cart Removed Successfully']);
 
     }
-
-    public function Mycart() {
-
-        return view('frontend.mycart.view_cart');
-
-    }
-
-    public function MyCartPage() {
-
-      
-
-    }
     
 
 }

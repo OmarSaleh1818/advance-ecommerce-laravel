@@ -555,7 +555,7 @@
             }
         })
     }
-    wishlist();
+    mycart();
 </script>
 
 <!-- End Wishlist Page -->

@@ -1,6 +1,14 @@
 @extends('frontend.main_master')
 @section('content')
 
+@section('title')
+@if(session()->get('language') == 'arabic')
+تحديث بيانات
+@else
+Update Profile Page
+@endif
+@endsection
+
 <div class="body-content">
     <div class="container">
         <div class="row">

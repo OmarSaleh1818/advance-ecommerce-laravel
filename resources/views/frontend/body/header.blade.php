@@ -19,7 +19,7 @@
                   Wishlist
               @endif
             </a></li>
-            <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+            <li><a href="{{ url('/mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
             @auth

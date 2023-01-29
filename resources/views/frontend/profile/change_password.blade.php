@@ -1,6 +1,14 @@
 @extends('frontend.main_master')
 @section('content')
 
+@section('title')
+@if(session()->get('language') == 'arabic')
+تغيير الباسوورد
+@else
+Change Password Page
+@endif
+@endsection
+
 <div class="body-content">
     <div class="container">
         <div class="row">

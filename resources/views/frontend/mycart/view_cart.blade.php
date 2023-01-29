@@ -3,7 +3,7 @@
 
 @section('title')
 @if(session()->get('language') == 'arabic')
-قائمة hgf'hrhj
+قائمة الكارت
 @else
 Your Cart Page
 @endif
