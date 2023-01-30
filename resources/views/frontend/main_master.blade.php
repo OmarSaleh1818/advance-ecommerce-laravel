@@ -501,27 +501,27 @@
 
 </script>
 
-<script>
+<script type="text/javascript">
        function mycart() {
         $.ajax({
             type:'GET',
-            dataType:'json',
             url:'/mycart/product',
+            dataType:'json',
             success:function(response) {
 
                 var myCart = ""
-                $.each(response, function(key, value) {
+                $.each(response.carts, function(key, value) {
 
                     myCart += 
                         `<tr>
                             <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
                             <td class="cart-image">
                                 <a class="entry-thumbnail" href="detail.html">
-                                    <img src="assets/images/products/p1.jpg" alt="">
+                                    <img src="/${value.options.image}" alt="">
                                 </a>
                             </td>
                             <td class="cart-product-name-info">
-                                <h4 class='cart-product-description'><a href="detail.html">Floral Print Buttoned</a></h4>
+                                <h4 class='cart-product-description'><a href="detail.html">${value.name}</a></h4>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="rating rateit-small"></div>
@@ -546,8 +546,8 @@
                                         <input type="text" value="1">
                                 </div>
                             </td>
-                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
-                            <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">${value.qty}</span></td>
+                            <td class="cart-product-grand-total"><span class="cart-grand-total-price">${value.price}</span></td>
                         </tr>`
                 });
 

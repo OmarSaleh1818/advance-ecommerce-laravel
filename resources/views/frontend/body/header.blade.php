@@ -19,7 +19,15 @@
                   Wishlist
               @endif
             </a></li>
-            <li><a href="{{ url('/mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+            <li>
+                <a href="{{ url('/mycart') }}"><i class="icon fa fa-shopping-cart"></i>
+                    @if(session()->get('language') == 'arabic') 
+                        قائمة الكارت
+                    @else
+                        My Cart
+                    @endif
+                </a>
+            </li>
             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
             @auth
