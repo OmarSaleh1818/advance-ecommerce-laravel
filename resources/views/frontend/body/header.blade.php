@@ -6,7 +6,7 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="#"><i class="icon fa fa-user"></i> @if(session()->get('language') == 'arabic') 
+            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i> @if(session()->get('language') == 'arabic') 
                   حسابك
               @else
                   my profile
@@ -31,9 +31,22 @@
             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
             @auth
-              <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
+              <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
+                @if(session()->get('language') == 'arabic')
+                  تعريف المستخدم
+                @else
+                  User Profile
+                @endif
+              </a></li>
             @else
-              <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+              <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                      @if(session()->get('language') == 'arabic')
+                          تسجيل الدخول
+                      @else
+                          Login/Register
+                      @endif
+                  </a>
+              </li>
             @endauth
             
 
@@ -43,14 +56,6 @@
         
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
-            <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-             data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">USD</a></li>
-                <li><a href="#">INR</a></li>
-                <li><a href="#">GBP</a></li>
-              </ul>
-            </li>
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" 
             data-toggle="dropdown"><span class="value">
               @if(session()->get('language') == 'arabic') 

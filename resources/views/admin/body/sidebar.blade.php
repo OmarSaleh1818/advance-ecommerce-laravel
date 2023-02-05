@@ -86,6 +86,20 @@ $route = Route::current()->getName();
               <a href="{{ route('manage.slider') }}"><i class="ti-more"></i>Manage slider</a></li>
           </ul>
         </li> 
+
+        <li class="treeview {{ ($prefix == '/coupons')? 'active':'' }} ">
+          <a href="#">
+            <i class="fa fa-cc-diners-club" aria-hidden="true"></i>
+            <span>Coupons</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'manage.coupon')? 'active' : '' }}">
+              <a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
+          </ul>
+        </li> 
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  

@@ -147,6 +147,17 @@ Route::prefix('slider')->group(function() {
 
 // End Admin Slider All Route
 
+// Admin Coupon All Route
+Route::middleware(['auth:admin'])->group(function(){
+    Route::prefix('coupons')->group(function() {
+    
+        Route::get('/manage',[SliderController::class, 'ManageCoupon'])->name('manage.coupon');
+    
+    });
+});
+    
+    // End Admin Slider All Route
+
 
 
 /* ------------- End Admin Route -------------*/
