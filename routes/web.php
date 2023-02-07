@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\LanguageController;
 use App\Http\Controllers\Home\CartController;
@@ -151,7 +152,11 @@ Route::prefix('slider')->group(function() {
 Route::middleware(['auth:admin'])->group(function(){
     Route::prefix('coupons')->group(function() {
     
-        Route::get('/manage',[SliderController::class, 'ManageCoupon'])->name('manage.coupon');
+        Route::get('/manage',[CouponController::class, 'ManageCoupon'])->name('manage.coupon');
+        Route::post('/store',[CouponController::class, 'CouponStore'])->name('coupon.store');
+        Route::get('/edit/{id}',[CouponController::class, 'CouponEdit'])->name('coupon.edit');
+        Route::post('/update',[CouponController::class, 'CouponUpdate'])->name('coupon.update');
+        Route::get('/delete/{id}',[CouponController::class, 'CouponDelete'])->name('coupon.delete');
     
     });
 });
