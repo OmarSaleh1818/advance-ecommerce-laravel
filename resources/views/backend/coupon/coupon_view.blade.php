@@ -86,7 +86,7 @@
 							</div>
 							
                             <div class="form-group">
-								<h5>Coupon Discount ($) <span class="text-danger">*</span></h5>
+								<h5>Coupon Discount (%) <span class="text-danger">*</span></h5>
 								<div class="controls">
 									<input type="text" name="coupon_discount" class="form-control">
                                     @error('coupon_discount')
