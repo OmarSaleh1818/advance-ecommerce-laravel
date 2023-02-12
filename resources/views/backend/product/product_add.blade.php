@@ -69,7 +69,7 @@
                                         <option value="" selected="" disabled="">Select SubCategory</option>
                                        
                                     </select>
-                                    @error('category_id')
+                                    @error('subcategory_id')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
                                 </div>

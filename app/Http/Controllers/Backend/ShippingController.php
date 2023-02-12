@@ -131,6 +131,7 @@ class ShippingController extends Controller
     public function DistrictUpdate(Request $request) {
 
         $request->validate([
+            'division_id' => 'required',
             'district_name' => 'required',
         ],[
             'district_name.required' => 'District Name iS Required',
@@ -174,7 +175,7 @@ class ShippingController extends Controller
 
         $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
         $districts = ShipDistrict::orderBy('district_name', 'ASC')->get();
-        $states = ShipState::with('division', 'district')->orderBy('id', 'DESC')->get();
+        $states = ShipState::with('division','district')->orderBy('id', 'DESC')->get();
         return view('backend.shipping.state_view', compact('divisions', 'districts', 'states'));
 
     }
@@ -257,6 +258,13 @@ class ShippingController extends Controller
         );
 
         return redirect()->back()->with($notification);
+
+    }
+
+    public function GetDivision($division_id) {
+
+        $district= ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+        return json_encode($district);
 
     }
 

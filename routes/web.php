@@ -183,6 +183,7 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/edit/state/{id}',[ShippingController::class, 'StateEdit'])->name('state.edit');
         Route::post('/update/state',[ShippingController::class, 'StateUpdate'])->name('state.update');
         Route::get('/delete/state/{id}',[ShippingController::class, 'StateDelete'])->name('state.delete');
+        Route::get('/division/district/ajax/{division_id}',[ShippingController::class, 'GetDivision']);
     
     });
 });
