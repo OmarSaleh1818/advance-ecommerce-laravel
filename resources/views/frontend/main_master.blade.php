@@ -533,7 +533,7 @@
                                     </div>
                                 </div><!-- /.row -->
                                 <div class="cart-product-info">
-                                                    <span class="product-color">COLOR:<span>Blue</span></span>
+                                                    <span class="product-color">COLOR:<span>${value.options.color}</span></span>
                                 </div>
                             </td>
                             <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
@@ -543,10 +543,10 @@
                                         <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
                                         <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
                                         </div>
-                                        <input type="text" value="1">
+                                        <input type="number" class="form-control" id="qty" value="1" min="1">
                                 </div>
                             </td>
-                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">${value.qty}</span></td>
+                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">${value.price}</span></td>
                             <td class="cart-product-grand-total"><span class="cart-grand-total-price">${value.price}</span></td>
                         </tr>`
                 });
@@ -560,6 +560,51 @@
 
 <!-- End Wishlist Page -->
 
+<!-- ///// Coupon Apply ///// -->
+
+<script type="text/javascript">
+
+    function applyCoupon() {
+
+        var coupon_name = $.('#coupon_name').val();
+
+        $.ajax({
+            type:'POST',
+            datatype:'json',
+            data:{coupon_name:coupon_name},
+            url:"{{ url('/coupon-apply') }}",
+            success:function(data) {
+                // Start Message 
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
+            }
+        })
+
+    }
+
+</script>
+
+
+
+<!-- ///// Coupon Apply ///// -->
 
 
 <!-- Add To Cart Product Modal: END -->

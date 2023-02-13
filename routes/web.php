@@ -258,6 +258,12 @@ Route::middleware('auth')->group(function () {
 
 // End Wishlist Route
 
+// Frontend Coupon Option
+
+Route::post('/coupon-apply',[CartPageController::class, 'CouponApply']);
+
+// End Frontend Coupon Option
+
 /////// Multi Language All Route /////////
 
 Route::get('/language/english',[LanguageController::class, 'English'])->name('english.language');
