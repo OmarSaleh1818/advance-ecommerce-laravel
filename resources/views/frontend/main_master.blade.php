@@ -539,15 +539,12 @@
                             <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
                             <td class="cart-product-quantity">
                                 <div class="quant-input">
-                                        <div class="arrows">
-                                        <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                        <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                        </div>
-                                        <input type="number" class="form-control" id="qty" value="1" min="1">
+                                        
+                                        <input type="number" class="form-control" id="qty" value="${value.qty}" min="1">
                                 </div>
                             </td>
-                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">${value.price}</span></td>
-                            <td class="cart-product-grand-total"><span class="cart-grand-total-price">${value.price}</span></td>
+                            <td class="cart-product-sub-total"><span class="cart-sub-total-price">${value.price} SR</span></td>
+                            <td class="cart-product-grand-total"><span class="cart-grand-total-price">${value.price} SR</span></td>
                         </tr>`
                 });
 
@@ -566,7 +563,7 @@
 
     function applyCoupon() {
 
-        var coupon_name = $.('#coupon_name').val();
+        var coupon_name = $('#coupon_name').val();
 
         $.ajax({
             type:'POST',
@@ -574,6 +571,8 @@
             data:{coupon_name:coupon_name},
             url:"{{ url('/coupon-apply') }}",
             success:function(data) {
+                couponCalculation();
+                $('#couponFaild').hide();
                 // Start Message 
                 const Toast = Swal.mixin({
                     toast: true,
@@ -600,8 +599,103 @@
 
     }
 
+    function couponCalculation() {
+
+        $.ajax({
+            type:'GET',
+            url:'{{ url("/coupon-calculations") }}',
+            datatype: 'json',
+            success:function(data) {
+                if (data.total) {
+                    $('#couponCalFaild').html(
+                        ` <tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">SR ${data.total}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">SR ${data.total}</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        `
+                    )
+                } else {
+                    $('#couponCalFaild').html(
+                        ` <tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">SR ${data.subtotal}</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Coupon Name<span class="inner-left-md">${data.coupon_name}</span>
+                                        <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Discount Amount<span class="inner-left-md">SR ${data.discount_amount}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">SR ${data.total_amount}</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        `
+                    )
+                }
+            }
+        });
+
+    }
+
+    couponCalculation();
 </script>
 
+<script type="text/javascript">
+     
+     function couponRemove(){
+        $.ajax({
+            type:'GET',
+            url: "{{ url('/coupon-remove') }}",
+            dataType: 'json',
+            success:function(data){
+                couponCalculation();
+                $('#couponField').show();
+                $('#coupon_name').val('');
+
+
+                 // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+
+                }
+
+                // End Message 
+
+            }
+        });
+
+     }
+
+
+</script>
 
 
 <!-- ///// Coupon Apply ///// -->

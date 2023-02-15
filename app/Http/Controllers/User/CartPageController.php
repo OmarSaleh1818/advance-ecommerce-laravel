@@ -48,7 +48,8 @@ class CartPageController extends Controller
             ]);
 
             return response()->json(array(
-                'sucess' => 'Coupon Apply Successfully'
+
+                'success' => 'Coupon Applied Successfully'
             ));
 
         }else {
@@ -56,6 +57,34 @@ class CartPageController extends Controller
 
         }
 
+    }
+
+    public function CouponCalculation() {
+
+        if (Session::has('coupon')) {
+            return response()->json(array(
+
+                'subtotal' => Cart::total(),
+                'coupon_name' => session()->get('coupon')['coupon_name'],
+                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'discount_amount' => session()->get('coupon')['discount_amount'],
+                'total_amount' => session()->get('coupon')['total_amount']
+
+            ));
+        } else {
+            return response()->json(array(
+
+                'total' => Cart::total(),
+
+            ));
+        }
+        
+
+    }
+
+    public function CouponRemove(){
+        Session::forget('coupon');
+        return response()->json(['success' => 'Coupon Remove Successfully']);
     }
 
 

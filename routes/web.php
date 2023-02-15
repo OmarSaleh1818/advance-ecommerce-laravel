@@ -261,6 +261,8 @@ Route::middleware('auth')->group(function () {
 // Frontend Coupon Option
 
 Route::post('/coupon-apply',[CartPageController::class, 'CouponApply']);
+Route::get('/coupon-calculations',[CartPageController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartPageController::class, 'CouponRemove']);
 
 // End Frontend Coupon Option
 

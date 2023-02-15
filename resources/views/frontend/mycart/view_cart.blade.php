@@ -103,7 +103,10 @@ Your Cart Page
 
                 </div>
 		
-                <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                <div class="col-md-4 col-sm-12 estimate-ship-tax" id="couponFaild">
+                    @if(Session::has('coupon'))
+
+                    @else
                     <table class="table">
                         <thead>
                             <tr>
@@ -127,21 +130,13 @@ Your Cart Page
                                 </tr>
                         </tbody><!-- /tbody -->
                     </table><!-- /table -->
+                    @endif
                 </div><!-- /.estimate-ship-tax -->
 
                 <div class="col-md-4 col-sm-12 cart-shopping-total">
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div class="cart-sub-total">
-                                        Subtotal<span class="inner-left-md">$600.00</span>
-                                    </div>
-                                    <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">$600.00</span>
-                                    </div>
-                                </th>
-                            </tr>
+                        <thead id="couponCalFaild">
+                           
                         </thead><!-- /thead -->
                         <tbody>
                                 <tr>
