@@ -461,9 +461,11 @@
             }
         })
     }
+
     wishlist();
+</script>
 
-
+<script type="text/javascript">
     function wishlistRemove(id) {
 
         $.ajax({
@@ -533,7 +535,10 @@
                                     </div>
                                 </div><!-- /.row -->
                                 <div class="cart-product-info">
-                                                    <span class="product-color">COLOR:<span>${value.options.color}</span></span>
+                                    <span class="product-color">COLOR:<span>${value.options.color}</span></span>
+                                </div>
+                                <div class="cart-product-info">
+                                    <span class="product-color">SIZE:<span>${value.options.size}</span></span>
                                 </div>
                             </td>
                             <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>

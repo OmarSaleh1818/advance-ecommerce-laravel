@@ -87,5 +87,25 @@ class CartPageController extends Controller
         return response()->json(['success' => 'Coupon Remove Successfully']);
     }
 
+    public function CheckoutCreate() {
+
+        if (Cart::total() > 0) {
+            $carts = Cart::content();
+            $cartQty = Cart::count();
+            $cartTotal = Cart::total();
+
+            return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+        } else {
+            
+            $notification = array(
+                'message' => 'Sopping At Least One Product',
+                'alert-type' => 'error'
+            );
+            return redirect()->to('/')->with($notification);
+        }
+        
+
+    }
+
 
 }
