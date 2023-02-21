@@ -123,9 +123,18 @@ Your Cart Page
                                             <input type="text" class="form-control unicase-form-control text-input"
                                              placeholder="You Coupon.." id="coupon_name">
                                         </div>
-                                        <div class="clearfix pull-right">
-                                            <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()">APPLY COUPON</button>
-                                        </div>
+                                        @if(Cart::total() > 0)
+                                            <div class="clearfix pull-right">
+                                                <button type="submit" class="btn-upper btn btn-primary" 
+                                                onclick="applyCoupon()">APPLY COUPON</button>
+                                            </div>
+                                        @else
+                                            <div class="clearfix pull-right">
+                                                <a href="{{ url('/') }}" type="submit" class="btn-upper btn btn-primary" 
+                                                >APPLY COUPON</a>
+                                            </div>
+                                        @endif
+
                                     </td>
                                 </tr>
                         </tbody><!-- /tbody -->

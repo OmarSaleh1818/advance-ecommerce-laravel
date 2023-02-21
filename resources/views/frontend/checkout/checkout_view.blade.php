@@ -110,11 +110,11 @@ My Checkout
                                         <strong>Image :</strong>
                                         <img src="{{ asset($item->options->image) }}" style="width:50px; 
                                         height:50px;margin-left:18px;">
-                                    </li>
+                                    </li><br>
                                     <li>
                                         <strong>Product Name :</strong>
                                         {{ $item->name }}
-                                    </li>
+                                    </li><br>
                                     <li>
                                         <strong>Quantity :</strong>
                                         ( {{ $item->qty}} )
@@ -132,19 +132,19 @@ My Checkout
                                
                                     <li>
                                         @if(Session::has('coupon'))
-                                            <strong>SubTotal : </strong> {{ $cartTotal }} <hr>
+                                            <strong>SubTotal : <span style="color:blue"> {{ $cartTotal }} SR</span></strong><hr>
 
                                             <strong>Coupon Name : </strong>{{ session()->get('coupon')['coupon_name'] }}
                                             ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                              <hr>
-                                             <strong>Coupon Discount : </strong>{{ session()->get('coupon')['discount_amount'] }}
+                                             <strong>Coupon Discount : <span style="color:blue">{{ session()->get('coupon')['discount_amount'] }} SR</span></strong>
                                              <hr>
-                                             <strong>Grand Total : </strong>{{ session()->get('coupon')['total_amount'] }}
+                                             <strong>Grand Total : <span style="color:blue">{{ session()->get('coupon')['total_amount'] }} SR</span></strong>
                                              <hr>
                                         @else
-                                            <strong>SubTotal : </strong> {{ $cartTotal }} <hr>
+                                            <strong>SubTotal : <span style="color:blue">{{ $cartTotal }} SR</span</strong>><hr>
 
-                                            <strong>Grand Total : </strong>{{ $cartTotal }}
+                                            <strong>Grand Total : <span style="color:blue">{{ $cartTotal }} SR</span></strong>
                                             <hr>
                                         @endif
 
