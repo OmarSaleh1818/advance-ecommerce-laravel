@@ -17,6 +17,7 @@ use App\Http\Controllers\Home\LanguageController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -269,6 +270,8 @@ Route::get('/coupon-remove', [CartPageController::class, 'CouponRemove']);
 // Frontend Checkout Option
 
 Route::get('/checkout', [CartPageController::class, 'CheckoutCreate'])->name('checkout');
+Route::get('/district/ajax/{division_id}',[CartPageController::class, 'GetDistrict']);
+Route::get('/state/ajax/{district_id}',[CartPageController::class, 'GetState']);
 
 // End Frontend Checkout Option
 

@@ -66,7 +66,7 @@
                             <div class="form-group">
 								<h5>Category Name English <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text"  name="category_name_en" class="form-control" >
+									<input type="text"  name="category_name_en" class="form-control" required>
                                     @error('category_name_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -76,7 +76,7 @@
                             <div class="form-group">
 								<h5>Category Name Arabic <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text" name="category_name_ar" class="form-control">
+									<input type="text" name="category_name_ar" class="form-control" required>
                                     @error('category_name_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -86,7 +86,7 @@
                             <div class="form-group">
 								<h5>Category Icon <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text" name="category_icon" class="form-control">
+									<input type="text" name="category_icon" class="form-control" required>
                                     @error('category_icon')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror

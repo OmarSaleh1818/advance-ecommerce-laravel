@@ -78,7 +78,7 @@
                             <div class="form-group">
 								<h5>Coupon Name <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text"  name="coupon_name" class="form-control" >
+									<input type="text"  name="coupon_name" class="form-control" required>
                                     @error('coupon_name')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -88,7 +88,7 @@
                             <div class="form-group">
 								<h5>Coupon Discount (%) <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text" name="coupon_discount" class="form-control">
+									<input type="text" name="coupon_discount" class="form-control" required>
                                     @error('coupon_discount')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -99,7 +99,7 @@
 								<h5>Coupon Validity Date<span class="text-danger">*</span></h5>
 								<div class="controls">
 									<input type="date" name="coupon_validity" class="form-control" min="{{
-                                        Carbon\Carbon::now()->format('Y-m-d') }}">
+                                        Carbon\Carbon::now()->format('Y-m-d') }}" required>
                                     @error('coupon_validity')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror

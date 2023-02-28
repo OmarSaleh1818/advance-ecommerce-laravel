@@ -64,7 +64,7 @@
                             <div class="form-group">
 								<h5>Division Name <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text"  name="division_name" class="form-control" >
+									<input type="text"  name="division_name" class="form-control" required>
                                     @error('division_name')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -73,7 +73,7 @@
                             
 						</div>
 						<div class="text-xs-right">
-							<input type="submit" class="btn btn-rounded btn-info mb-5" value="Add Division">
+							<input type="submit" class="btn btn-rounded btn-info mb-5" value="Add Division" required>
 						</div>
 					</form>
 

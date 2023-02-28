@@ -95,7 +95,7 @@
 						<div class="form-group">
 							<h5>Slider Image <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="file" name="slider_image" class="form-control">
+								<input type="file" name="slider_image" class="form-control" required>
 								@error('slider_image')
 									<span class="text-danger"> {{ $message }}</span>
 								@enderror
@@ -104,14 +104,14 @@
 						<div class="form-group">
 							<h5>Slider Title <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text"  name="title" class="form-control" >
+								<input type="text"  name="title" class="form-control" required>
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<h5>Slider Description <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="description" class="form-control">
+								<input type="text" name="description" class="form-control" required>
 							</div>
 						</div>
 						

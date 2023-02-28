@@ -8,6 +8,9 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Models\ShipDivision;
+use App\Models\ShipDistrict;
+use App\Models\ShipState;
 
 class CartPageController extends Controller
 {
@@ -78,7 +81,6 @@ class CartPageController extends Controller
 
             ));
         }
-        
 
     }
 
@@ -94,7 +96,11 @@ class CartPageController extends Controller
             $cartQty = Cart::count();
             $cartTotal = Cart::total();
 
-            return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+            $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+            $districts = ShipDistrict::latest()->get();
+            $states = ShipState::latest()->get();
+            return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 
+            'divisions', 'districts', 'states'));
         } else {
             
             $notification = array(
@@ -104,6 +110,20 @@ class CartPageController extends Controller
             return redirect()->to('/')->with($notification);
         }
         
+
+    }
+
+    public function GetDistrict($division_id) {
+
+        $districts= ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+        return json_encode($districts);
+
+    }
+
+    public function GetState($district_id) {
+
+        $states= ShipState::where('distrct_id', $district_id)->orderBy('state_name', 'ASC')->get();
+        return json_encode($states);
 
     }
 

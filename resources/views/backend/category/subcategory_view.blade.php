@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <h5>Category Select <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <select name="category_id" class="form-control" >
+                                <select name="category_id" class="form-control" required>
                                     <option value="" selected="" disabled="">Select Category</option>
                                     @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category_name_en }}</option>
@@ -82,7 +82,7 @@
                             <div class="form-group">
 								<h5>SubCategory Name English <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text"  name="subcategory_name_en" class="form-control" >
+									<input type="text"  name="subcategory_name_en" class="form-control" required>
                                     @error('subcategory_name_en')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror
@@ -92,7 +92,7 @@
                             <div class="form-group">
 								<h5>SubCategory Name Arabic <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="text" name="subcategory_name_ar" class="form-control">
+									<input type="text" name="subcategory_name_ar" class="form-control" required>
                                     @error('subcategory_name_ar')
                                         <span class="text-danger"> {{ $message }}</span>
                                     @enderror

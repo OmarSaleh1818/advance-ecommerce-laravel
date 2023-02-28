@@ -1,5 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 @section('title')
 @if(session()->get('language') == 'arabic')
@@ -42,90 +43,90 @@ My Checkout
                                         <form class="register-form" role="form">
 
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
+                                                <label class="info-title" for="exampleInputEmail1"><b>Shipping Name</b> <span>*</span></label>
                                                 <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" 
                                                 id="exampleInputEmail1" placeholder="" value="{{ Auth::user()->name }}" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Email <span>*</span></label>
+                                                <label class="info-title" for="exampleInputEmail1"><b>Email</b>  <span>*</span></label>
                                                 <input type="email" name="shipping_email" class="form-control unicase-form-control text-input" 
                                                 id="exampleInputEmail1" placeholder="" value="{{ Auth::user()->email }}" required> 
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Phone <span>*</span></label>
+                                                <label class="info-title" for="exampleInputEmail1"><b>Phone</b>  <span>*</span></label>
                                                 <input type="number" name="shipping_phone" class="form-control unicase-form-control text-input" 
                                                 id="exampleInputEmail1" placeholder="" value="{{ Auth::user()->phone }}" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
+                                                <label class="info-title" for="exampleInputEmail1"><b>Post Code</b>  <span>*</span></label>
                                                 <input type="text" name="post_code" class="form-control unicase-form-control text-input" 
                                                 id="exampleInputEmail1" placeholder="Post Code...." required>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Notes </label>
-                                                <textarea name="notes" class="form-control unicase-form-control text-input" 
-                                                id="exampleInputEmail1" placeholder="Notes...."></textarea>
-                                            </div>
-                                        
-                                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                                        </form>
 
                                     </div>	
                                     <!-- guest-login -->
 
                                     <!-- already-registered-login -->
                                     <div class="col-md-6 col-sm-6 already-registered-login">
-                                        <h4 class="checkout-subtitle">Already registered?</h4>
-
-                                        <form class="register-form" role="form">
 
                                             <div class="form-group">
-                                                <h5>Select Division<span class="text-danger">*</span></h5>
+                                                <h5><b>Select Division</b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="division_id" class="form-control unicase-form-control text-input" >
-                                                        <option value="" selected="" disabled="">Select Division</option>
-                                                        
-                                                        <option value="hi">
-                                                            </option>
-                                                        
+                                                        <option value="" selected="" disabled=""><b>Select Division</option>
+                                                        @foreach($divisions as $div)
+                                                        <option value="{{ $div->id }}">
+                                                            {{ $div->division_name }}</option>
+                                                        @endforeach
                                                     </select>
-                                                    
+                                                    @error('division_id')
+                                                        <span class="text-danger"> {{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group">
+                                                <h5><b>Select District</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="district_id" class="form-control unicase-form-control text-input" >
+                                                        <option value="" selected="" disabled=""><b>Select District</option>
+                                                        @foreach($districts as $dist)
+                                                        <option value="{{ $dist->id }}">
+                                                            {{ $dist->district_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('district_id')
+                                                        <span class="text-danger"> {{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <h5>Select District<span class="text-danger">*</span></h5>
+                                                <h5><b>Select State</b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="division_id" class="form-control unicase-form-control text-input" >
-                                                        <option value="" selected="" disabled="">Select Division</option>
-                                                        
-                                                        <option value="hi">
-                                                            </option>
-                                                        
+                                                    <select name="state_id" class="form-control unicase-form-control text-input" >
+                                                        <option value="" selected="" disabled="">Select State</option>
+                                                        @foreach($states as $state)
+                                                        <option value="{{ $state->id }}">
+                                                            {{ $state->state_name }}</option>
+                                                        @endforeach
                                                     </select>
-                                                    
+                                                    @error('state_id')
+                                                        <span class="text-danger"> {{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <h5>Select State<span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="division_id" class="form-control unicase-form-control text-input" >
-                                                        <option value="" selected="" disabled="">Select Division</option>
-                                                        
-                                                        <option value="hi">
-                                                            </option>
-                                                        
-                                                    </select>
-                                                    
-                                                </div>
+                                                <label class="info-title" for="exampleInputEmail1"><b>Notes</b> </label>
+                                                <textarea name="notes" class="form-control unicase-form-control text-input" 
+                                                id="exampleInputEmail1" placeholder="Notes...."></textarea>
                                             </div>
 
-                                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Submit</button>
                                         </form>
 
                                     </div>	
@@ -156,23 +157,23 @@ My Checkout
                                 @foreach($carts as $item)
                                     <li>
                                         <strong>Image :</strong>
-                                        <img src="{{ asset($item->options->image) }}" style="width:50px; 
+                                        <img src="{{ asset($item->options->image) }}" style="width:80px; 
                                         height:50px;margin-left:18px;">
                                     </li><br>
                                     <li>
-                                        <strong>Product Name :</strong>
-                                        {{ $item->name }}
+                                        <strong>Product Name :
+                                        <span style="color:blue">{{ $item->name }}</spn></strong>
                                     </li><br>
                                     <li>
-                                        <strong>Quantity :</strong>
-                                        ( {{ $item->qty}} )
-                                        <strong style="margin-left:15px">Color :</strong>
-                                        {{ $item->options->color}}
+                                        <strong>Quantity :
+                                        <span style="color:blue">( {{ $item->qty}} )</span></strong>
+                                        <strong style="margin-left:15px">Color :
+                                        <span style="color:blue">{{ $item->options->color}}</span></strong>
                                         @if($item->options->size == NULL)
                                         
                                         @else
-                                            <strong style="margin-left:15px">Size :</strong>
-                                            {{ $item->options->size}}
+                                            <strong style="margin-left:15px">Size :
+                                            <span style="color:blue">{{ $item->options->size}}</span></strong>
                                         @endif
                                     </li>
                                     <hr>
@@ -190,7 +191,7 @@ My Checkout
                                              <strong>Grand Total : <span style="color:blue">{{ session()->get('coupon')['total_amount'] }} SR</span></strong>
                                              <hr>
                                         @else
-                                            <strong>SubTotal : <span style="color:blue">{{ $cartTotal }} SR</span</strong>><hr>
+                                            <strong>SubTotal : <span style="color:blue">{{ $cartTotal }} SR</span></strong><hr>
 
                                             <strong>Grand Total : <span style="color:blue">{{ $cartTotal }} SR</span></strong>
                                             <hr>
@@ -216,6 +217,49 @@ My Checkout
 <!-- /.logo-slider --> 
 <!-- ============================================== BRANDS CAROUSEL : END ========================================= -->
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="division_id"]').on('change',function() {
+            var division_id = $(this).val();
+            if(division_id) {
+                $.ajax({
+                    url: "{{ url('/district/ajax') }}/"+division _id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        var d =$('select[name="district_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="district_id"]').append('<option value="'+ value.id + '">' + value.district_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
 
+
+        $('select[name="district_id"]').on('change',function() {
+            var district_id = $(this).val();
+            if(district_id) {
+                $.ajax({
+                    url: "{{ url('/state/ajax') }}/"+district_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        var d =$('select[name="state_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="state"]').append('<option value="'+ value.id + '">' + value.state_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+
+    });
+</script>
 
 @endsection

@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <h5>Select Division<span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <select name="division_id" class="form-control" >
+                                <select name="division_id" class="form-control" required>
                                     <option value="" selected="" disabled="">Select Division</option>
                                     @foreach($divisions as $div)
                                     <option value="{{ $div->id }}">
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <h5>Select District<span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <select name="district_id" class="form-control" >
+                                <select name="district_id" class="form-control" required>
                                     <option value="" selected="" disabled="">Select District</option>
                                     @foreach($districts as $dist)
                                     <option value="{{ $dist->id }}">
@@ -102,7 +102,7 @@
                         <div class="form-group">
                             <h5>State Name <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text"  name="state_name" class="form-control" >
+                                <input type="text"  name="state_name" class="form-control" required>
                                 @error('state_name')
                                     <span class="text-danger"> {{ $message }}</span>
                                 @enderror
