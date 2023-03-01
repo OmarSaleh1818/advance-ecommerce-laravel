@@ -270,8 +270,9 @@ Route::get('/coupon-remove', [CartPageController::class, 'CouponRemove']);
 // Frontend Checkout Option
 
 Route::get('/checkout', [CartPageController::class, 'CheckoutCreate'])->name('checkout');
-Route::get('/district/ajax/{division_id}',[CartPageController::class, 'GetDistrict']);
-Route::get('/state/ajax/{district_id}',[CartPageController::class, 'GetState']);
+Route::get('/district-get/ajax/{division_id}',[CheckoutController::class, 'GetDistrict']);
+Route::get('/state-get/ajax/{district_id}',[CheckoutController::class, 'GetState']);
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
 
 // End Frontend Checkout Option
 

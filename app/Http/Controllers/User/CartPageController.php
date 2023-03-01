@@ -113,19 +113,5 @@ class CartPageController extends Controller
 
     }
 
-    public function GetDistrict($division_id) {
-
-        $districts= ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
-        return json_encode($districts);
-
-    }
-
-    public function GetState($district_id) {
-
-        $states= ShipState::where('distrct_id', $district_id)->orderBy('state_name', 'ASC')->get();
-        return json_encode($states);
-
-    }
-
 
 }
