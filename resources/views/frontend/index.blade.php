@@ -18,7 +18,13 @@ Home Page
         
         <!-- ================================== TOP NAVIGATION ================================== -->
         <div class="side-menu animate-dropdown outer-bottom-xs">
-          <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+          <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> 
+              @if(session()->get('language') == 'arabic')
+                  الفئات
+              @else
+                  Categories
+              @endif
+          </div>
 
           @php
             $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
@@ -92,7 +98,13 @@ Home Page
         <!-- ============================================== SPECIAL OFFER ============================================== -->
         
         <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-          <h3 class="section-title">Special Offer</h3>
+          <h3 class="section-title">
+              @if(session()->get('language') == 'arabic')
+                  عرض خاص
+              @else
+                  Special Offer
+              @endif
+                </h3>
           <div class="sidebar-widget-body outer-top-xs">
             <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
               
@@ -158,7 +170,13 @@ Home Page
         <!-- ============================================== SPECIAL DEALS ============================================== -->
         
         <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-          <h3 class="section-title">Special Deals</h3>
+          <h3 class="section-title">
+          @if(session()->get('language') == 'arabic')
+              صفقة خاصة 
+          @else
+              Special Deals
+          @endif  
+          </h3>
           <div class="sidebar-widget-body outer-top-xs">
             <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
 
@@ -550,7 +568,13 @@ Home Page
         <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
         <section class="section featured-product wow fadeInUp">
-          <h3 class="section-title">Featured products</h3>
+          <h3 class="section-title">
+            @if(session()->get('language') == 'arabic')
+              منتجات جديدة
+            @else      
+              Featured products
+            @endif
+          </h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
             @foreach($featured as $product)

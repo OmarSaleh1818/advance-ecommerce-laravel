@@ -51,7 +51,7 @@ class CartPageController extends Controller
             ]);
 
             return response()->json(array(
-
+                'validity' => true,
                 'success' => 'Coupon Applied Successfully'
             ));
 
@@ -110,7 +110,6 @@ class CartPageController extends Controller
             return redirect()->to('/')->with($notification);
         }
         
-
     }
 
 

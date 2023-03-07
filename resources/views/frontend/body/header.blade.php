@@ -9,7 +9,7 @@
             <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i> @if(session()->get('language') == 'arabic') 
                   حسابك
               @else
-                  my profile
+                  My Profile
               @endif
             </a></li>
             <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>
@@ -28,7 +28,15 @@
                     @endif
                 </a>
             </li>
-            <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li>
+                <a href="{{ route('checkout') }}"><i class="fa fa-cc-diners-club"></i>
+                    @if(session()->get('language') == 'arabic')
+                        الدفع
+                    @else
+                        Checkout
+                    @endif
+                </a>
+            </li>
 
             @auth
               <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
@@ -148,7 +156,7 @@
                       <span class='price' id="cartSubTotal"></span>SR 
                   </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
+                  <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                 <!-- /.cart-total--> 
                 
               </li>
@@ -245,7 +253,13 @@
                   </ul>
                 </li>
                 @endforeach
-                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
+                <li class="dropdown  navbar-right special-menu"> <a href="#">
+                    @if(session()->get('language') == 'arabic')
+                        عرض اليوم
+                    @else
+                      Todays offer
+                    @endif
+                    </a> </li>
               </ul>
               <!-- /.navbar-nav -->
               <div class="clearfix"></div>

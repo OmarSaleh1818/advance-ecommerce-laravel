@@ -32,7 +32,7 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->
@@ -577,7 +577,9 @@
             url:"{{ url('/coupon-apply') }}",
             success:function(data) {
                 couponCalculation();
-                $('#couponFaild').hide();
+                if (data.validity == true) {
+                    $('#couponFaild').hide();   
+                }
                 // Start Message 
                 const Toast = Swal.mixin({
                     toast: true,
@@ -637,10 +639,10 @@
                                         <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
                                     </div>
                                     <div class="cart-sub-total">
-                                        Discount Amount<span class="inner-left-md">SR ${data.discount_amount}</span>
+                                        Discount Amount<span class="inner-left-md" style="color:red"> -${data.discount_amount} SR</span>
                                     </div>
                                     <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">SR ${data.total_amount}</span>
+                                        Grand Total<span class="inner-left-md"> ${data.total_amount} SR</span>
                                     </div>
                                 </th>
                             </tr>
